@@ -8,4 +8,4 @@ steps:
 
 - name: 'gcr.io/cloud-builders/gsutil'
   entrypoint: 'gsutil'
-  args: ['-m', 'rsync', '-r', '-c', '-d', '.' gs://gcp-bucket-sync-99]
+  args: ['-m', 'rsync', '-r', '-c', '-d' '.' gs://gcp-bucket-sync-99]
