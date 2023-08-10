@@ -7,4 +7,4 @@ steps:
       gcloud secrets versions access latest --secret=github --project=gcp-bucket-sync --format='get(payload.data)' | tr '_-' '/+' | base64 -d > credentials.json
 
 - name: 'gcr.io/cloud-builders/gsutil'
-  args: ['-m', 'rsync', '-r', '--exclude=.*', '-c', '-d', '-x', '.', gs://gcp-bucket-sync-99]
+  args: ['-m', 'rsync', '-r', '-c', '-d', '-x', '--exclude=.*',  '.', gs://gcp-bucket-sync-99]
