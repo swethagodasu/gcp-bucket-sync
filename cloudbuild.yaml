@@ -5,3 +5,7 @@ steps:
     - '-c'
     - |
       gcloud secrets versions access latest --secret=github --project=gcp-bucket-sync --format='get(payload.data)' | tr '_-' '/+' | base64 -d > credentials.json
+
+- name: 'gcr.io/cloud-builders/gsutil'
+  entrypoint: 'gsutil'
+  args: ['-m', 'rsync', '-r', '-c', '-d', '.' gs://gcp-bucket-sync-99]
