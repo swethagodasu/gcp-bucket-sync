@@ -1,10 +1,10 @@
-steps:
-- name: 'gcr.io/cloud-builders/gcloud'
-  entrypoint: 'sh'
-  args:
-    - '-c'
-    - |
-      gcloud secrets versions access latest --secret=github --project=gcp-bucket-sync --format='get(payload.data)' | tr '_-' '/+' | base64 -d > credentials.json
+# steps:
+# - name: 'gcr.io/cloud-builders/gcloud'
+#   entrypoint: 'sh'
+#   args:
+#     - '-c'
+#     - |
+#       gcloud secrets versions access latest --secret=github --project=gcp-bucket-sync --format='get(payload.data)' | tr '_-' '/+' | base64 -d > credentials.json
 
 - name: 'gcr.io/cloud-builders/gsutil'
   args: ['-m', 'rsync', '-r', '-c', '-d', '-x', '".*\./*"', '.', gs://gcp-bucket-sync-99]
